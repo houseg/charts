@@ -8,6 +8,9 @@ metadata:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
+{{ if .Values.persistence.dataClassification }}
+    DataClassification: {{ .Values.persistence.dataClassification | quote }}
+{{- end }}
 {{ if .Values.persistence.annotations}}
   annotations:
     {{- range $key, $value := .Values.persistence.annotations }}
